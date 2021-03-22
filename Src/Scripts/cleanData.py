@@ -16,6 +16,20 @@ def test():
     df.to_csv(processd_data_path)
     print("INFO: Done\n")
 
+def test_for_multiple_filters():
+    """"
+    Cleans the data by adding the columns and removing the index
+    """
+    raw_data_path = "../../Data/Raw/filtersData.csv"
+    processd_data_path = "../../Data/Processed/filtersData.csv"
+    df = pd.read_csv(raw_data_path)
+    columns = ['Number', 'realAltitude', "movingAveragew3" , "movingAveragew2" ,
+                "movingAveragew1" , "exponentialFilter" , "runningMedian" ,
+                "digitalSmooth" ,"kalman"]
+    df.columns = columns
+    df.drop(labels=['Number'], inplace=True, axis=1)
+    df.to_csv(processd_data_path)
+    print("INFO: Done\n")
 
 def main():
     """"
@@ -31,5 +45,5 @@ def main():
     print("INFO: Done\n")
 
 if __name__ == '__main__':
-    test()
+    test_for_multiple_filters()
 
